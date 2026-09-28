@@ -1,5 +1,6 @@
 const { app, BrowserWindow } = require('electron');
 const path = require('path');
+const { autoUpdater } = require('electron-updater');
 
 function createWindow() {
   const win = new BrowserWindow({
@@ -21,6 +22,15 @@ function createWindow() {
 
 app.whenReady().then(() => {
   createWindow();
+
+  if (!app.isPackaged) {
+    console.log('Mode développement : recherche de mise à jour désactivée.');
+  } else {
+    autoUpdater.checkForUpdatesAndNotify().catch((err) => {
+      console.log('Recherche de mise à jour impossible :', err.message);
+    });
+  }
+
   app.on('activate', () => {
     if (BrowserWindow.getAllWindows().length === 0) createWindow();
   });
