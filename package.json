@@ -1,0 +1,36 @@
+{
+  "name": "gauthiertours",
+  "version": "1.0.0",
+  "description": "GAUTHIERTOURS - Jeu de plateau",
+  "main": "main.js",
+  "author": "GAUTHIERTOURS",
+  "license": "UNLICENSED",
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-builder --win nsis",
+    "build": "electron-builder --win"
+  },
+  "build": {
+    "appId": "com.gauthiertours.game",
+    "productName": "GAUTHIERTOURS",
+    "files": [
+      "index.html",
+      "main.js",
+      "package.json"
+    ],
+    "win": {
+      "target": "nsis"
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true
+    }
+  },
+  "devDependencies": {
+    "electron": "^38.2.0",
+    "electron-builder": "^26.0.12"
+  }
+}
